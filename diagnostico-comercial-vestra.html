@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Diagnóstico Comercial™ · VESTRA</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0A0A0A;
+  --accent:#0057FF;
+  --text:#FFFFFF;
+  --muted:#888888;
+  --border:#1C1C1C;
+  --green:#00875A;
+  --orange:#B86800;
+  --red:#C8392B;
+}
+
+html{height:100%;-webkit-text-size-adjust:100%}
+
+body{
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Courier Prime',monospace;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Fixed chrome ─────────────────────────────────────── */
+.stripe{
+  position:fixed;top:0;right:0;
+  width:18px;height:100%;
+  background:var(--accent);
+  z-index:300;
+}
+
+.uv{
+  position:fixed;top:16px;right:26px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:17px;
+  color:var(--accent);letter-spacing:1px;
+  z-index:301;
+}
+
+.badge{
+  position:fixed;bottom:12px;left:50%;
+  transform:translateX(-50%);
+  font-size:9px;color:#3A3A3A;
+  letter-spacing:5px;text-transform:uppercase;
+  z-index:300;white-space:nowrap;
+  font-family:'Courier Prime',monospace;
+}
+
+/* ── Progress bar ─────────────────────────────────────── */
+.prog-track{
+  position:fixed;top:0;left:0;right:18px;
+  height:2px;background:#111;z-index:299;
+}
+.prog-fill{
+  height:100%;background:var(--accent);
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+  width:0%;
+}
+
+/* ── App wrapper ──────────────────────────────────────── */
+.app{padding-right:18px;min-height:100vh}
+
+/* ── Screens ──────────────────────────────────────────── */
+.screen{
+  display:none;min-height:100vh;
+  flex-direction:column;
+  padding:58px 24px 68px;
+}
+.screen.active{display:flex}
+
+/* ── Typography helpers ───────────────────────────────── */
+.tag{
+  font-size:10px;color:var(--muted);
+  letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:28px;
+  font-family:'Courier Prime',monospace;
+}
+
+.title-xl{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-size:clamp(50px,13vw,82px);
+  line-height:.92;text-transform:uppercase;
+  color:var(--text);margin-bottom:22px;
+}
+.title-xl .a{color:var(--accent)}
+
+.rule{width:28px;height:3px;background:var(--accent);margin-bottom:18px}
+
+.lead{
+  font-size:13px;color:var(--muted);
+  line-height:1.75;margin-bottom:36px;
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btn{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:16px;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:16px 22px;border:none;
+  cursor:pointer;width:100%;
+  transition:opacity .15s;
+  -webkit-tap-highlight-color:transparent;
+  outline:none;
+}
+.btn-blue{background:var(--accent);color:#fff}
+.btn-blue:hover:not(:disabled){opacity:.86}
+.btn-blue:disabled{opacity:.25;cursor:default}
+
+.btn-ghost{
+  background:transparent;
+  border:1px solid #252525;
+  color:var(--muted);
+  flex-shrink:0;width:52px;
+}
+.btn-ghost:hover{border-color:#444}
+
+/* ── Footer ───────────────────────────────────────────── */
+.footer{
+  font-size:10px;color:#2E2E2E;
+  text-align:center;margin-top:24px;
+  letter-spacing:1px;padding-bottom:44px;
+  font-family:'Courier Prime',monospace;
+}
+
+/* ══ WELCOME ════════════════════════════════════════════ */
+#sWelcome{justify-content:space-between}
+.w-body{flex:1;display:flex;flex-direction:column;justify-content:center}
+
+/* ══ QUESTION ═══════════════════════════════════════════ */
+#sQuestion{justify-content:space-between}
+
+.q-meta{
+  display:flex;align-items:center;
+  margin-bottom:14px;
+}
+.q-area{
+  font-size:9px;color:var(--accent);
+  letter-spacing:3px;text-transform:uppercase;
+}
+.q-num{
+  font-size:9px;color:#2E2E2E;
+  letter-spacing:2px;margin-left:auto;
+}
+
+.q-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-size:clamp(26px,7vw,42px);
+  line-height:1.04;text-transform:uppercase;
+  margin-bottom:26px;
+}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+
+.opt{
+  background:transparent;
+  border:1px solid #1E1E1E;
+  color:var(--text);
+  font-family:'Courier Prime',monospace;
+  font-size:13px;text-align:left;
+  padding:13px 14px;
+  cursor:pointer;line-height:1.5;
+  transition:border-color .12s,background .12s;
+  -webkit-tap-highlight-color:transparent;
+  width:100%;outline:none;
+}
+.opt:hover{border-color:#0057FF55;background:#0057FF07}
+.opt.sel{border-color:var(--accent);background:#0057FF12}
+
+.q-nav{display:flex;gap:10px;padding-top:22px}
+
+/* ══ Slide animations ════════════════════════════════════ */
+@keyframes slideR{from{opacity:0;transform:translateX(44px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideL{from{opacity:0;transform:translateX(-44px)}to{opacity:1;transform:translateX(0)}}
+.anim-r{animation:slideR .32s ease}
+.anim-l{animation:slideL .32s ease}
+
+/* ══ RESULTS ════════════════════════════════════════════ */
+#sResults{justify-content:flex-start}
+
+.r-lbl{
+  font-size:9px;color:var(--muted);
+  letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:4px;
+}
+.r-score{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:104px;
+  color:var(--accent);line-height:.88;
+}
+.r-denom{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:30px;
+  color:#333;
+}
+
+.sem{
+  display:inline-flex;align-items:center;gap:9px;
+  margin-top:14px;padding:9px 14px;
+  border:1px solid;
+}
+.sem-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sem-lbl{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:17px;
+  letter-spacing:2px;text-transform:uppercase;
+}
+
+.sec{
+  font-size:9px;color:#2A2A2A;
+  letter-spacing:3px;text-transform:uppercase;
+  padding:26px 0 13px;
+  border-top:1px solid #111;
+  margin-top:6px;
+}
+
+/* Area bars */
+.area-row{
+  display:flex;align-items:center;
+  gap:10px;margin-bottom:10px;
+}
+.area-lbl{
+  font-size:10px;color:var(--muted);
+  letter-spacing:1px;text-transform:uppercase;
+  width:112px;flex-shrink:0;
+}
+.bar-bg{flex:1;height:5px;background:#111}
+.bar-fill{height:100%;transition:width .7s ease}
+.area-pts{
+  font-size:10px;color:#333;
+  width:36px;text-align:right;flex-shrink:0;
+}
+
+/* Weak areas */
+.weak-list{display:flex;flex-direction:column;gap:11px}
+.weak-item{padding:12px 14px;border-left:2px solid}
+.weak-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:15px;
+  letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:5px;
+}
+.weak-desc{font-size:12px;color:#555;line-height:1.6}
+
+/* Insight */
+.insight{padding:16px;border:1px solid #111;margin-top:4px}
+.insight p{font-size:13px;color:#AAAAAA;line-height:1.8}
+
+/* WA Button */
+.btn-wa{
+  display:block;background:var(--accent);color:#fff;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:17px;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:18px 22px;text-align:center;
+  text-decoration:none;margin-top:28px;
+  transition:opacity .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-wa:hover{opacity:.86}
+</style>
+</head>
+<body>
+
+<!-- Fixed chrome -->
+<div class="stripe"></div>
+<div class="uv">UV</div>
+<div class="badge">VESTRA</div>
+<div class="prog-track"><div class="prog-fill" id="prog"></div></div>
+
+<div class="app">
+
+  <!-- ══ WELCOME ══════════════════════════════════════════ -->
+  <div class="screen active" id="sWelcome">
+    <div class="w-body">
+      <div class="tag">Diagnóstico Comercial™ · VESTRA</div>
+      <h1 class="title-xl">¿Tienes<br>un sistema<br>de <span class="a">ventas</span>?</h1>
+      <div class="rule"></div>
+      <p class="lead">10 preguntas para detectar en dónde<br>están las fugas de tu negocio y qué<br>debes arreglar primero.</p>
+      <button class="btn btn-blue" onclick="startApp()">Iniciar diagnóstico →</button>
+    </div>
+    <div class="footer">VESTRA · @uriel_vestra · +52 55 2065 4337</div>
+  </div>
+
+  <!-- ══ QUESTION ══════════════════════════════════════════ -->
+  <div class="screen" id="sQuestion">
+    <div id="qBody" style="flex:1"></div>
+    <div>
+      <div class="q-nav">
+        <button class="btn btn-ghost" id="btnBack" onclick="goBack()" style="display:none">←</button>
+        <button class="btn btn-blue" id="btnNext" onclick="goNext()" disabled style="flex:1">Continuar →</button>
+      </div>
+      <div class="footer">VESTRA · @uriel_vestra · +52 55 2065 4337</div>
+    </div>
+  </div>
+
+  <!-- ══ RESULTS ══════════════════════════════════════════ -->
+  <div class="screen" id="sResults"></div>
+
+</div>
+
+<script>
+/* ── Data ──────────────────────────────────────────────── */
+const Q = [
+  {
+    area:'Prospección',
+    text:'¿Cómo llegan la mayoría de tus clientes nuevos hoy?',
+    opts:[
+      {t:'Por recomendación o conocidos',p:1},
+      {t:'Redes sociales o publicidad',p:3},
+      {t:'Tengo un sistema activo de prospección',p:5},
+      {t:'No tengo claridad de dónde vienen',p:0}
+    ]
+  },
+  {
+    area:'Independencia',
+    text:'¿Quién cierra la mayoría de las ventas en tu negocio?',
+    opts:[
+      {t:'Yo personalmente, siempre',p:1},
+      {t:'Yo, pero con apoyo ocasional',p:2},
+      {t:'Tengo vendedores que cierran solos',p:4},
+      {t:'Hay un proceso que cualquiera puede seguir',p:5}
+    ]
+  },
+  {
+    area:'Métricas',
+    text:'¿Sabes cuántos prospectos nuevos entran cada mes?',
+    opts:[
+      {t:'No llevo ese control',p:0},
+      {t:'Tengo una idea aproximada',p:2},
+      {t:'Sí, lo sé con exactitud',p:5},
+      {t:'Varía tanto que es difícil saberlo',p:1}
+    ]
+  },
+  {
+    area:'Predictibilidad',
+    text:'¿Qué tan predecibles son las ventas del próximo mes?',
+    opts:[
+      {t:'No tengo idea de lo que va a entrar',p:0},
+      {t:'Puedo intuirlo pero no calcularlo',p:2},
+      {t:'Puedo estimar con cierta precisión',p:4},
+      {t:'Tengo proyección con margen definido',p:5}
+    ]
+  },
+  {
+    area:'Seguimiento',
+    text:'¿Qué pasa con prospectos que piden cotización pero no compran de inmediato?',
+    opts:[
+      {t:'Los pierdo — no hago seguimiento',p:0},
+      {t:'A veces les escribo, sin proceso fijo',p:1},
+      {t:'Tengo una cadencia básica de seguimiento',p:3},
+      {t:'Tengo secuencia hasta el cierre o descarte',p:5}
+    ]
+  },
+  {
+    area:'Cierre',
+    text:'¿En qué parte del proceso se pierde la mayoría de tus ventas?',
+    opts:[
+      {t:'No sé — no tengo visibilidad',p:0},
+      {t:'En la propuesta — no tengo formato claro',p:1},
+      {t:'En el seguimiento — los prospectos se enfrían',p:2},
+      {t:'Lo identifico y estoy corrigiéndolo',p:4}
+    ]
+  },
+  {
+    area:'Métricas',
+    text:'¿Tienes definida una meta semanal de ventas?',
+    opts:[
+      {t:'No, vendo lo que llega',p:0},
+      {t:'Tengo meta anual pero no la desgloso',p:1},
+      {t:'Sí, tengo meta mensual que reviso',p:3},
+      {t:'Sí, con meta semanal y tablero de control',p:5}
+    ]
+  },
+  {
+    area:'Cierre',
+    text:'¿Cómo defines el precio de tus productos o servicios?',
+    opts:[
+      {t:'Según lo que me parece razonable',p:1},
+      {t:'Calculo costos pero sin estrategia',p:2},
+      {t:'Calculo margen y ajusto al mercado',p:3},
+      {t:'Precio basado en valor con margen definido',p:5}
+    ]
+  },
+  {
+    area:'Independencia',
+    text:'¿Tienes documentado cómo atender a un prospecto del primer contacto al cierre?',
+    opts:[
+      {t:'No, cada venta se maneja diferente',p:0},
+      {t:'Está en mi cabeza pero no escrito',p:1},
+      {t:'Tengo pasos básicos pero informales',p:3},
+      {t:'Sí, proceso documentado que otros pueden seguir',p:5}
+    ]
+  },
+  {
+    area:'Predictibilidad',
+    text:'Si tuvieras el sistema correcto, ¿cuánto tiempo le dedicarías esta semana?',
+    opts:[
+      {t:'Menos de 1 hora — estoy saturado',p:1},
+      {t:'1–2 horas si es concreto y útil',p:3},
+      {t:'20 minutos al día, 5 días seguidos',p:5},
+      {t:'Lo que sea — esto es urgente para mí',p:5}
+    ]
+  }
+];
+
+const AREA_ORDER = ['Prospección','Independencia','Métricas','Predictibilidad','Seguimiento','Cierre'];
+
+const AREA_DESC = {
+  'Prospección':    'No tienes un flujo constante y predecible de prospectos nuevos. Dependes del boca a boca o del azar, lo que hace que las ventas sean inconsistentes mes a mes.',
+  'Independencia':  'El negocio depende de ti para vender. Si tú paras, las ventas paran. Necesitas un proceso que cualquier otra persona pueda ejecutar sin ti.',
+  'Métricas':       'No tienes visibilidad de los números clave de tu embudo comercial. Sin datos, tomas decisiones a ciegas y no puedes mejorar lo que no mides.',
+  'Predictibilidad':'No puedes anticipar los ingresos del mes siguiente. Operas en modo reactivo, lo que genera estrés financiero y dificulta cualquier tipo de planeación.',
+  'Seguimiento':    'Estás perdiendo ventas por falta de seguimiento sistemático. La mayoría de prospectos compran después del 5° contacto — sin un sistema, los estás dejando ir.',
+  'Cierre':         'Hay fugas en la etapa de cierre. Sin un proceso claro de propuesta y precio basado en valor, los prospectos se enfrían o terminan con la competencia.'
+};
+
+const INSIGHTS = {
+  rojo:   'Tu negocio vende, pero no tiene sistema. Cada cliente llega por accidente y cada cierre depende de tu energía personal. El primer paso es visibilidad: saber exactamente de dónde vienen y a dónde se van tus prospectos.',
+  naranja:'Tienes estructura parcial, pero hay fugas claras que te están costando dinero hoy. No necesitas construir desde cero — necesitas tapar los hoyos correctos en el orden correcto.',
+  verde:  'Tienes una base sólida. El siguiente nivel es optimización: mejorar la conversión en cada etapa, escalar lo que ya funciona y liberar tu tiempo de las ventas operativas.'
+};
+
+/* ── State ─────────────────────────────────────────────── */
+let cur = 0;
+let ans = Array(10).fill(null);
+
+/* ── Navigation ────────────────────────────────────────── */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startApp(){
+  showScreen('sQuestion');
+  renderQ(0,'r');
+}
+
+function renderQ(idx, dir){
+  cur = idx;
+  const q = Q[idx];
+
+  // Progress: start at 0 on Q1, full on finish
+  document.getElementById('prog').style.width = (idx / 10 * 100) + '%';
+
+  // Back button
+  const bb = document.getElementById('btnBack');
+  bb.style.display = idx > 0 ? '' : 'none';
+
+  // Continue button
+  document.getElementById('btnNext').disabled = ans[idx] === null;
+
+  // Build HTML
+  const optsHtml = q.opts.map((o, i) =>
+    `<button class="opt ${ans[idx] === i ? 'sel' : ''}" onclick="pick(${i})">${esc(o.t)}</button>`
+  ).join('');
+
+  document.getElementById('qBody').innerHTML = `
+    <div class="anim-${dir}">
+      <div class="q-meta">
+        <span class="q-area">${q.area}</span>
+        <span class="q-num">${idx + 1} / 10</span>
+      </div>
+      <h2 class="q-title">${esc(q.text)}</h2>
+      <div class="opts">${optsHtml}</div>
+    </div>
+  `;
+}
+
+function pick(i){
+  ans[cur] = i;
+  document.querySelectorAll('.opt').forEach((b, j) => b.classList.toggle('sel', j === i));
+  document.getElementById('btnNext').disabled = false;
+}
+
+function goNext(){
+  if(ans[cur] === null) return;
+  if(cur < 9){ renderQ(cur + 1,'r'); }
+  else { buildResults(); }
+}
+
+function goBack(){
+  if(cur > 0) renderQ(cur - 1,'l');
+}
+
+/* ── Results ───────────────────────────────────────────── */
+function buildResults(){
+  document.getElementById('prog').style.width = '100%';
+
+  // Compute area scores and maxima
+  const aScore = {}, aMax = {};
+  AREA_ORDER.forEach(a => { aScore[a] = 0; aMax[a] = 0; });
+
+  Q.forEach((q, i) => {
+    aMax[q.area] += Math.max(...q.opts.map(o => o.p));
+    if(ans[i] !== null) aScore[q.area] += q.opts[ans[i]].p;
+  });
+
+  const total = AREA_ORDER.reduce((s, a) => s + aScore[a], 0);
+
+  // Semaphore
+  let sc, sl, sk;
+  if(total <= 15){ sc='#C8392B'; sl='Ventas por Accidente'; sk='rojo'; }
+  else if(total <= 32){ sc='#B86800'; sl='Fugas en el Sistema'; sk='naranja'; }
+  else { sc='#00875A'; sl='Estructura Sólida'; sk='verde'; }
+
+  function barColor(pct){
+    if(pct >= .70) return '#00875A';
+    if(pct >= .40) return '#B86800';
+    return '#C8392B';
+  }
+
+  // Area bars
+  const areasHtml = AREA_ORDER.map(a => {
+    const pct = aMax[a] ? aScore[a] / aMax[a] : 0;
+    const bc = barColor(pct);
+    return `
+      <div class="area-row">
+        <div class="area-lbl">${a}</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:${Math.round(pct*100)}%;background:${bc}"></div></div>
+        <div class="area-pts">${aScore[a]}/${aMax[a]}</div>
+      </div>`;
+  }).join('');
+
+  // Top 3 weakest areas (by percentage)
+  const sorted = AREA_ORDER
+    .map(a => ({ a, pct: aMax[a] ? aScore[a]/aMax[a] : 0 }))
+    .sort((x,y) => x.pct - y.pct)
+    .slice(0, 3);
+
+  const weakHtml = sorted.map(({a, pct}, i) => {
+    const bc = barColor(pct);
+    return `
+      <div class="weak-item" style="border-color:${bc}">
+        <div class="weak-name">${i+1}. ${a}</div>
+        <div class="weak-desc">${esc(AREA_DESC[a])}</div>
+      </div>`;
+  }).join('');
+
+  // WhatsApp
+  const waMsg = encodeURIComponent(`Hola Uriel, hice el Diagnóstico Comercial™ y obtuve ${total}/50. Me gustaría platicar sobre mis resultados.`);
+  const waUrl = `https://wa.me/5215520654337?text=${waMsg}`;
+
+  document.getElementById('sResults').innerHTML = `
+    <!-- Score -->
+    <div style="margin-bottom:32px">
+      <div class="r-lbl">Puntuación total</div>
+      <div><span class="r-score">${total}</span><span class="r-denom"> /50</span></div>
+      <div class="sem" style="border-color:${sc}40">
+        <div class="sem-dot" style="background:${sc}"></div>
+        <div class="sem-lbl" style="color:${sc}">${sl}</div>
+      </div>
+    </div>
+
+    <!-- Areas -->
+    <div class="sec">Resultados por área</div>
+    ${areasHtml}
+
+    <!-- Top 3 weak -->
+    <div class="sec">Top 3 áreas críticas</div>
+    <div class="weak-list">${weakHtml}</div>
+
+    <!-- Insight -->
+    <div class="sec">Diagnóstico</div>
+    <div class="insight"><p>${esc(INSIGHTS[sk])}</p></div>
+
+    <!-- CTA -->
+    <a href="${waUrl}" target="_blank" rel="noopener" class="btn-wa">
+      Hablar con Uriel por WhatsApp →
+    </a>
+
+    <div class="footer">VESTRA · @uriel_vestra · +52 55 2065 4337</div>
+  `;
+
+  showScreen('sResults');
+}
+
+/* ── Util ──────────────────────────────────────────────── */
+function esc(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>
