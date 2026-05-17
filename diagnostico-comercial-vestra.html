@@ -378,10 +378,42 @@ async function enviarReporteAUriel({ nombre, whatsapp, score, nivel, areaRows, t
         subject:     `🎯 Diagnóstico: ${nombre} · ${score}/50 · ${nivel}`,
         from_name:   'Diagnóstico Comercial VESTRA',
         to:          NOTIFY_EMAIL,
-        html:        htmlBody,
-        // fallback texto plano
-        message:     `Nuevo diagnóstico\n\nNombre: ${nombre}\nWhatsApp: ${whatsapp || 'No proporcionado'}\nScore: ${score}/50 — ${nivel}\n\nÁREAS:\n${areasTexto}\n\nTOP 3:\n${top3Texto}\n\nDIAGNÓSTICO:\n${diagnostico}`,
-        botcheck:    false
+        message: [
+          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+          `🎯 DIAGNÓSTICO COMERCIAL™ · VESTRA`,
+          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+          ``,
+          `👤 NOMBRE    ${nombre}`,
+          `📱 WHATSAPP  ${whatsapp ? `wa.me/${whatsapp.replace(/\D/g,'')}` : 'No proporcionado'}`,
+          ``,
+          `📊 SCORE     ${score}/50`,
+          `🏷  NIVEL     ${nivel.toUpperCase()}`,
+          ``,
+          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+          `SEMÁFORO POR ÁREA`,
+          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+          ...areaRows.map(a => {
+            const em = a.pct>=.70?'🟢':a.pct>=.40?'🟠':'🔴';
+            const tg = a.pct>=.70?'SÓLIDO ':a.pct>=.40?'FUGA   ':'CRÍTICO';
+            return `${em} ${a.nombre.padEnd(16)} ${tg}  ${a.pts}`;
+          }),
+          ``,
+          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+          `TOP ÁREAS CRÍTICAS`,
+          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+          ...top3.map((a,i) => `${i+1}. ${a.nombre}\n   ${a.desc}`),
+          ``,
+          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+          `DIAGNÓSTICO`,
+          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+          diagnostico,
+          ``,
+          whatsapp ? `📲 WhatsApp directo: https://wa.me/${whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(`Hola ${nombre.split(' ')[0]}, vi tu diagnóstico. Tu score fue ${score}/50 (${nivel}). ¿Tienes 15 min para platicarlo?`)}` : '',
+          ``,
+          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+          `VESTRA · @uriel_vestra · +52 55 2065 4337`,
+        ].join('\n'),
+        botcheck: false
       })
     });
   } catch(e) {
