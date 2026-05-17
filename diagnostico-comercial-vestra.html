@@ -272,6 +272,123 @@ body{
 </div>
 
 <script>
+/* ══════════════════════════════════════════════════════════
+   CONFIGURACIÓN DE NOTIFICACIONES POR EMAIL
+   ──────────────────────────────────────────────────────────
+   1. Ve a https://web3forms.com
+   2. Escribe tu correo → haz clic en "Get your Access Key"
+   3. Revisa tu correo y copia la Access Key
+   4. Pégala abajo en WEB3FORMS_KEY
+   ══════════════════════════════════════════════════════════ */
+const WEB3FORMS_KEY = 'TU_ACCESS_KEY_AQUI';   // ← reemplaza esto
+const NOTIFY_EMAIL  = 'uriel@vestra.mx';        // ← tu correo de destino
+
+async function enviarReporteAUriel({ nombre, whatsapp, score, nivel, areaRows, top3, diagnostico }) {
+  if (!WEB3FORMS_KEY || WEB3FORMS_KEY === 'TU_ACCESS_KEY_AQUI') return; // sin key, no envía
+
+  const dot  = pct => pct >= .70 ? '🟢' : pct >= .40 ? '🟠' : '🔴';
+  const tag  = pct => pct >= .70 ? 'SÓLIDO' : pct >= .40 ? 'FUGA' : 'CRÍTICO';
+  const bar  = pct => '█'.repeat(Math.round(pct * 10)) + '░'.repeat(10 - Math.round(pct * 10));
+
+  const areasTexto = areaRows.map(a =>
+    `${dot(a.pct)} ${a.nombre.padEnd(16)} ${tag(a.pct).padEnd(8)} ${a.pts}`
+  ).join('\n');
+
+  const top3Texto = top3.map((a, i) =>
+    `${i + 1}. ${a.nombre}\n   ${a.desc}`
+  ).join('\n\n');
+
+  const waLink = whatsapp
+    ? `https://wa.me/${whatsapp.replace(/\D/g, '')}`
+    : '';
+
+  const htmlBody = `
+<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0A0A0A;color:#FFFFFF;padding:32px;border-radius:8px">
+
+  <div style="text-align:center;margin-bottom:28px">
+    <div style="font-size:11px;letter-spacing:4px;color:#0057FF;margin-bottom:8px">VESTRA · DIAGNÓSTICO COMERCIAL™</div>
+    <div style="font-size:13px;color:#888">Nuevo reporte completado</div>
+  </div>
+
+  <div style="background:#111;border:1px solid #1A1A1A;padding:20px;border-radius:6px;margin-bottom:20px">
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr><td style="color:#888;font-size:11px;letter-spacing:2px;padding-bottom:4px">NOMBRE</td><td style="color:#FFF;font-size:15px;font-weight:bold">${nombre}</td></tr>
+      <tr><td style="color:#888;font-size:11px;letter-spacing:2px;padding-bottom:4px;padding-top:12px">WHATSAPP</td>
+          <td style="padding-top:12px">${whatsapp
+            ? `<a href="${waLink}" style="color:#0057FF;font-size:15px;font-weight:bold">${whatsapp}</a>`
+            : '<span style="color:#555;font-size:13px">No proporcionado</span>'}</td></tr>
+    </table>
+  </div>
+
+  <div style="text-align:center;background:#111;border:2px solid ${score <= 15 ? '#C8392B' : score <= 32 ? '#B86800' : '#00875A'};padding:24px;border-radius:6px;margin-bottom:20px">
+    <div style="font-size:64px;font-weight:900;color:${score <= 15 ? '#C8392B' : score <= 32 ? '#B86800' : '#00875A'};line-height:1">${score}</div>
+    <div style="font-size:14px;color:#888;margin-top:4px">/50 puntos</div>
+    <div style="display:inline-block;margin-top:12px;background:${score <= 15 ? 'rgba(200,57,43,.15)' : score <= 32 ? 'rgba(184,104,0,.15)' : 'rgba(0,135,90,.15)'};border:1px solid ${score <= 15 ? '#C8392B' : score <= 32 ? '#B86800' : '#00875A'};padding:8px 20px;border-radius:4px">
+      <span style="font-size:13px;font-weight:bold;letter-spacing:2px;color:${score <= 15 ? '#C8392B' : score <= 32 ? '#B86800' : '#00875A'}">${nivel.toUpperCase()}</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px">
+    <div style="font-size:10px;letter-spacing:3px;color:#888;border-bottom:1px solid #1A1A1A;padding-bottom:8px;margin-bottom:12px">SEMÁFORO POR ÁREA</div>
+    ${areaRows.map(a => `
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #111">
+      <div style="width:10px;height:10px;border-radius:50%;background:${a.color};flex-shrink:0"></div>
+      <div style="flex:1;color:#CCC;font-size:13px">${a.nombre}</div>
+      <div style="width:120px;background:#1A1A1A;height:6px;border-radius:3px;overflow:hidden">
+        <div style="height:6px;background:${a.color};width:${Math.round(a.pct * 100)}%"></div>
+      </div>
+      <div style="width:52px;text-align:right;font-size:11px;font-weight:bold;letter-spacing:1px;color:${a.color}">${tag(a.pct)}</div>
+      <div style="width:32px;text-align:right;font-size:11px;color:#666">${a.pts}</div>
+    </div>`).join('')}
+  </div>
+
+  <div style="margin-bottom:20px">
+    <div style="font-size:10px;letter-spacing:3px;color:#888;border-bottom:1px solid #1A1A1A;padding-bottom:8px;margin-bottom:12px">TOP ÁREAS CRÍTICAS</div>
+    ${top3.map((a, i) => `
+    <div style="border-left:3px solid ${a.color};padding:12px 16px;margin-bottom:10px;background:#111">
+      <div style="font-size:13px;font-weight:bold;color:#FFF;margin-bottom:6px">${i+1}. ${a.nombre}</div>
+      <div style="font-size:12px;color:#AAA;line-height:1.6">${a.desc}</div>
+    </div>`).join('')}
+  </div>
+
+  <div style="background:rgba(0,87,255,.08);border:1px solid rgba(0,87,255,.2);padding:16px;border-radius:6px;margin-bottom:24px">
+    <div style="font-size:10px;letter-spacing:2px;color:#0057FF;margin-bottom:8px">DIAGNÓSTICO</div>
+    <div style="font-size:13px;color:#AAA;line-height:1.65">${diagnostico}</div>
+  </div>
+
+  ${whatsapp ? `
+  <div style="text-align:center">
+    <a href="${waLink}?text=${encodeURIComponent(`Hola ${nombre}, vi tu diagnóstico. Tu score fue ${score}/50 (${nivel}). Me gustaría platicar sobre tus resultados.`)}"
+       style="display:inline-block;background:#25D366;color:#FFF;padding:14px 32px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:15px;letter-spacing:1px">
+      📱 Abrir WhatsApp con ${nombre.split(' ')[0]} →
+    </a>
+  </div>` : ''}
+
+  <div style="text-align:center;margin-top:24px;font-size:10px;color:#333;letter-spacing:2px">
+    VESTRA · DIAGNÓSTICO COMERCIAL™ · @uriel_vestra
+  </div>
+</div>`;
+
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key:  WEB3FORMS_KEY,
+        subject:     `🎯 Diagnóstico: ${nombre} · ${score}/50 · ${nivel}`,
+        from_name:   'Diagnóstico Comercial VESTRA',
+        to:          NOTIFY_EMAIL,
+        html:        htmlBody,
+        // fallback texto plano
+        message:     `Nuevo diagnóstico\n\nNombre: ${nombre}\nWhatsApp: ${whatsapp || 'No proporcionado'}\nScore: ${score}/50 — ${nivel}\n\nÁREAS:\n${areasTexto}\n\nTOP 3:\n${top3Texto}\n\nDIAGNÓSTICO:\n${diagnostico}`,
+        botcheck:    false
+      })
+    });
+  } catch(e) {
+    // silencioso — no afecta la experiencia del prospecto
+  }
+}
+
 /* ── Data ── */
 const Q = [
   { area:'Prospección', text:'¿Cómo llegan la mayoría de tus clientes nuevos hoy?',
@@ -508,6 +625,29 @@ function buildResults(){
   `;
 
   showScreen('sResults');
+
+  // ── Enviar reporte a Uriel por email (silencioso, no bloquea UX) ──
+  const areaRows = AREA_ORDER.map(a => ({
+    nombre: a,
+    pct:    aMax[a] ? aScore[a]/aMax[a] : 0,
+    pts:    `${aScore[a]}/${aMax[a]}`,
+    color:  barColor(aMax[a] ? aScore[a]/aMax[a] : 0)
+  }));
+  const top3Data = sorted.map(({a, pct}) => ({
+    nombre: a,
+    pct,
+    color:  barColor(pct),
+    desc:   AREA_DESC[a]
+  }));
+  enviarReporteAUriel({
+    nombre:      leadName,
+    whatsapp:    leadWA,
+    score:       total,
+    nivel:       sl,
+    areaRows,
+    top3:        top3Data,
+    diagnostico: INSIGHTS[sk]
+  });
 }
 
 function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
