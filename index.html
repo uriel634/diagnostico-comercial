@@ -12,7 +12,7 @@
   .font-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; text-transform: uppercase; }
 
   /* Scroll progress */
-  #scroll-bar { position:fixed;top:0;left:0;height:2px;z-index:9999;background:#0057FF;width:0%;transition:width .1s linear; }
+  #scroll-bar { position:fixed;top:0;left:0;height:3px;z-index:9999;background:#0057FF;width:0%;transition:width .1s linear; }
 
   /* Sticky CTA */
   #sticky-cta { position:fixed;bottom:0;left:0;right:0;z-index:999;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1); }
@@ -21,7 +21,7 @@
   /* Animations */
   @keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
   @keyframes float  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-  @keyframes pulse-ring { 0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(0,87,255,.45)} 70%{transform:scale(1);box-shadow:0 0 0 16px rgba(0,87,255,0)} 100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(0,87,255,0)} }
+  @keyframes pulse-ring { 0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(0,87,255,.35)} 70%{transform:scale(1);box-shadow:0 0 0 16px rgba(0,87,255,0)} 100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(0,87,255,0)} }
   @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
   @keyframes blink   { 0%,100%{opacity:1} 50%{opacity:.3} }
 
@@ -33,16 +33,16 @@
   .reveal { opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease; }
   .reveal.active { opacity:1;transform:none; }
 
-  /* Glass */
-  .glass       { background:rgba(10,10,10,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.07); }
-  .glass-light { background:rgba(15,15,15,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.06); }
+  /* Cards — reemplaza glass */
+  .glass       { background:#FFFFFF;border:1px solid #E5E5E5;box-shadow:0 4px 24px rgba(0,0,0,.07); }
+  .glass-light { background:#FFFFFF;border:1px solid #EEEEEE;box-shadow:0 2px 12px rgba(0,0,0,.05); }
 
-  /* Grid bg */
-  .grid-bg { background-image:linear-gradient(rgba(0,87,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,87,255,.04) 1px,transparent 1px);background-size:64px 64px; }
+  /* Grid bg sutil sobre blanco */
+  .grid-bg { background-image:linear-gradient(rgba(0,87,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,87,255,.03) 1px,transparent 1px);background-size:64px 64px; }
 
-  /* Gradient text */
-  .grad-text { background:linear-gradient(135deg,#4D88FF 0%,#FFFFFF 55%,#0057FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-  .grad-text-accent { background:linear-gradient(135deg,#0057FF 0%,#4D88FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  /* Gradient text — sobre blanco usa tonos más oscuros */
+  .grad-text { background:linear-gradient(135deg,#0057FF 0%,#003FBF 55%,#4D88FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .grad-text-accent { background:linear-gradient(135deg,#0057FF 0%,#003FBF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
 
   /* Bar */
   .bar-fill { height:8px;border-radius:9999px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1); }
@@ -54,15 +54,12 @@
   /* Shimmer button */
   .btn-shimmer { background:linear-gradient(90deg,#003FBF,#0057FF,#4D88FF,#0057FF,#003FBF);background-size:300% 100%;animation:shimmer 3s infinite; }
 
-  /* Noise */
-  body::before { content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4; }
-
   /* Stripe */
   .stripe-right { position:fixed;top:0;right:0;width:14px;height:100%;background:#0057FF;z-index:10000;pointer-events:none; }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar { width:4px; }
-  ::-webkit-scrollbar-track { background:#080808; }
+  ::-webkit-scrollbar-track { background:#F0F0F0; }
   ::-webkit-scrollbar-thumb { background:#0057FF;border-radius:2px; }
 
   /* Mobile menu */
@@ -74,7 +71,7 @@
 </style>
 </head>
 
-<body class="overflow-x-hidden" style="background:#080808;color:#FFFFFF;">
+<body class="overflow-x-hidden" style="background:#F4F5F7;color:#0A0A0A;">
 
 <!-- Fixed blue stripe -->
 <div class="stripe-right"></div>
@@ -94,10 +91,10 @@
 
     <!-- Desktop links -->
     <div class="hidden md:flex items-center space-x-8 text-sm" style="color:#AAAAAA">
-      <a href="#areas" class="hover:text-white transition-colors font-title tracking-wider text-xs">Las 6 Áreas</a>
-      <a href="#como-funciona" class="hover:text-white transition-colors font-title tracking-wider text-xs">Cómo Funciona</a>
-      <a href="#testimonios" class="hover:text-white transition-colors font-title tracking-wider text-xs">Resultados</a>
-      <a href="#faq" class="hover:text-white transition-colors font-title tracking-wider text-xs">Preguntas</a>
+      <a href="#areas" class="hover:text-black transition-colors font-title tracking-wider text-xs">Las 6 Áreas</a>
+      <a href="#como-funciona" class="hover:text-black transition-colors font-title tracking-wider text-xs">Cómo Funciona</a>
+      <a href="#testimonios" class="hover:text-black transition-colors font-title tracking-wider text-xs">Resultados</a>
+      <a href="#faq" class="hover:text-black transition-colors font-title tracking-wider text-xs">Preguntas</a>
     </div>
 
     <div class="flex items-center space-x-3">
@@ -112,7 +109,7 @@
     </div>
   </div>
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="glass border-t px-6 py-4 space-y-3 text-sm" style="border-color:#1A1A1A">
+  <div id="mobile-menu" class="glass border-t px-6 py-4 space-y-3 text-sm" style="border-color:#E5E5E5">
     <a href="#areas" class="block py-1 font-title tracking-wider text-xs" style="color:#888">Las 6 Áreas</a>
     <a href="#como-funciona" class="block py-1 font-title tracking-wider text-xs" style="color:#888">Cómo Funciona</a>
     <a href="#testimonios" class="block py-1 font-title tracking-wider text-xs" style="color:#888">Resultados</a>
@@ -209,7 +206,7 @@
                 <span class="text-xs font-title tracking-wider" style="color:#888">Prospección</span>
                 <span class="text-xs bar-pct" style="color:#888">0%</span>
               </div>
-              <div class="w-full rounded-full overflow-hidden" style="background:#111;height:6px">
+              <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#0057FF,#4D88FF)"></div>
               </div>
             </div>
@@ -218,7 +215,7 @@
                 <span class="text-xs font-title tracking-wider" style="color:#888">Independencia</span>
                 <span class="text-xs bar-pct" style="color:#888">0%</span>
               </div>
-              <div class="w-full rounded-full overflow-hidden" style="background:#111;height:6px">
+              <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#C8392B,#FF6B6B)"></div>
               </div>
             </div>
@@ -227,7 +224,7 @@
                 <span class="text-xs font-title tracking-wider" style="color:#888">Métricas</span>
                 <span class="text-xs bar-pct" style="color:#888">0%</span>
               </div>
-              <div class="w-full rounded-full overflow-hidden" style="background:#111;height:6px">
+              <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#B86800,#FFB340)"></div>
               </div>
             </div>
@@ -236,7 +233,7 @@
                 <span class="text-xs font-title tracking-wider" style="color:#888">Predictibilidad</span>
                 <span class="text-xs bar-pct" style="color:#888">0%</span>
               </div>
-              <div class="w-full rounded-full overflow-hidden" style="background:#111;height:6px">
+              <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#0057FF,#4D88FF)"></div>
               </div>
             </div>
@@ -245,7 +242,7 @@
                 <span class="text-xs font-title tracking-wider" style="color:#888">Seguimiento</span>
                 <span class="text-xs bar-pct" style="color:#888">0%</span>
               </div>
-              <div class="w-full rounded-full overflow-hidden" style="background:#111;height:6px">
+              <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#C8392B,#FF6B6B)"></div>
               </div>
             </div>
@@ -254,13 +251,13 @@
                 <span class="text-xs font-title tracking-wider" style="color:#888">Cierre</span>
                 <span class="text-xs bar-pct" style="color:#888">0%</span>
               </div>
-              <div class="w-full rounded-full overflow-hidden" style="background:#111;height:6px">
+              <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#B86800,#FFB340)"></div>
               </div>
             </div>
           </div>
 
-          <div class="mt-6 pt-5 flex items-center justify-between" style="border-top:1px solid #1A1A1A">
+          <div class="mt-6 pt-5 flex items-center justify-between" style="border-top:1px solid #E5E5E5">
             <p class="text-xs" style="color:#888">Negocios con +40/50 <span style="color:#00875A;font-weight:700">cierran 3× más ventas</span></p>
             <span class="text-lg">⚡</span>
           </div>
@@ -288,7 +285,7 @@
 <!-- ══════════════════════════════════════════
      STATS BAR
 ══════════════════════════════════════════ -->
-<section class="py-8 reveal" style="border-top:1px solid #111;border-bottom:1px solid #111;background:rgba(10,10,10,.8)">
+<section class="py-8 reveal" style="border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5;background:rgba(244,245,247,.8)">
   <div class="container mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
       <div>
@@ -296,7 +293,7 @@
         <div class="text-xs mt-1 font-title tracking-widest" style="color:#888">Áreas evaluadas</div>
       </div>
       <div>
-        <div class="font-title text-white counter" style="font-size:32px" data-target="10">0</div>
+        <div class="font-title text-gray-900 counter" style="font-size:32px" data-target="10">0</div>
         <div class="text-xs mt-1 font-title tracking-widest" style="color:#888">Preguntas en total</div>
       </div>
       <div>
@@ -331,42 +328,42 @@
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors group" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0" checked>
             <div>
-              <span class="font-semibold text-white block text-sm">Le mandaste cotización y nunca respondió</span>
+              <span class="font-semibold text-gray-900 block text-sm">Le mandaste cotización y nunca respondió</span>
               <span class="text-xs" style="color:#AAAAAA">No hiciste seguimiento. Se fue con la competencia.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0" checked>
             <div>
-              <span class="font-semibold text-white block text-sm">No sabes qué va a entrar el próximo mes</span>
+              <span class="font-semibold text-gray-900 block text-sm">No sabes qué va a entrar el próximo mes</span>
               <span class="text-xs" style="color:#AAAAAA">Las ventas son impredecibles y eso genera estrés financiero constante.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0">
             <div>
-              <span class="font-semibold text-white block text-sm">Si tú paras, las ventas paran</span>
+              <span class="font-semibold text-gray-900 block text-sm">Si tú paras, las ventas paran</span>
               <span class="text-xs" style="color:#AAAAAA">El negocio está amarrado a tu tiempo. No hay proceso que otro pueda seguir.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0">
             <div>
-              <span class="font-semibold text-white block text-sm">Los clientes llegan por recomendación o suerte</span>
+              <span class="font-semibold text-gray-900 block text-sm">Los clientes llegan por recomendación o suerte</span>
               <span class="text-xs" style="color:#AAAAAA">No hay sistema activo de prospección. Cuando se seca el boca a boca, se seca todo.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0">
             <div>
-              <span class="font-semibold text-white block text-sm">No sabes cuántos prospectos entran cada mes</span>
+              <span class="font-semibold text-gray-900 block text-sm">No sabes cuántos prospectos entran cada mes</span>
               <span class="text-xs" style="color:#AAAAAA">Sin datos, tomas decisiones a ciegas y no puedes mejorar lo que no mides.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0">
             <div>
-              <span class="font-semibold text-white block text-sm">Vendes más pero no ves el dinero</span>
+              <span class="font-semibold text-gray-900 block text-sm">Vendes más pero no ves el dinero</span>
               <span class="text-xs" style="color:#AAAAAA">Sin precio basado en valor y sin métricas, el crecimiento destruye margen.</span>
             </div>
           </label>
@@ -380,7 +377,7 @@
           <div class="text-4xl mb-4">🎯</div>
           <h3 class="font-title text-2xl mb-3">La buena noticia</h3>
           <p class="mb-6 leading-relaxed text-sm" style="color:#AAAAAA">
-            El problema <strong class="text-white">no es tu producto, ni tu precio, ni el mercado.</strong> Es la falta de un sistema de ventas. Los negocios que más cierran no tienen más talento — tienen mejores procesos.
+            El problema <strong class="text-gray-900">no es tu producto, ni tu precio, ni el mercado.</strong> Es la falta de un sistema de ventas. Los negocios que más cierran no tienen más talento — tienen mejores procesos.
           </p>
 
           <div class="p-5 mb-6 space-y-3" style="background:rgba(0,87,255,.08);border:1px solid rgba(0,87,255,.15)">
@@ -423,7 +420,7 @@
 <!-- ══════════════════════════════════════════
      CÓMO FUNCIONA
 ══════════════════════════════════════════ -->
-<section id="como-funciona" class="py-24" style="background:rgba(10,10,10,.5);border-top:1px solid #111;border-bottom:1px solid #111">
+<section id="como-funciona" class="py-24" style="background:rgba(244,245,247,.8);border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <div class="inline-block px-3 py-1 mb-4 font-title text-xs tracking-widest" style="background:rgba(0,87,255,.1);border:1px solid rgba(0,87,255,.2);color:#0057FF">
@@ -478,7 +475,7 @@
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">🔍</div>
         <h3 class="font-title text-base mb-2" style="color:#0057FF">Prospección</h3>
         <p class="text-xs leading-relaxed mb-4" style="color:#888">Flujo constante de prospectos. ¿De dónde vienen y cómo llegan?</p>
-        <div class="w-full rounded-full overflow-hidden" style="background:#111;height:3px">
+        <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#0057FF;width:60%"></div>
         </div>
       </article>
@@ -487,7 +484,7 @@
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">⚙️</div>
         <h3 class="font-title text-base mb-2" style="color:#4D88FF">Independencia</h3>
         <p class="text-xs leading-relaxed mb-4" style="color:#888">¿Puede alguien más ejecutar el proceso de ventas sin ti?</p>
-        <div class="w-full rounded-full overflow-hidden" style="background:#111;height:3px">
+        <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#4D88FF;width:30%"></div>
         </div>
       </article>
@@ -496,7 +493,7 @@
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">📊</div>
         <h3 class="font-title text-base mb-2" style="color:#00875A">Métricas</h3>
         <p class="text-xs leading-relaxed mb-4" style="color:#888">¿Conoces tu tasa de conversión y cuántos prospectos entran?</p>
-        <div class="w-full rounded-full overflow-hidden" style="background:#111;height:3px">
+        <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#00875A;width:40%"></div>
         </div>
       </article>
@@ -505,7 +502,7 @@
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">📅</div>
         <h3 class="font-title text-base mb-2" style="color:#B86800">Predictibilidad</h3>
         <p class="text-xs leading-relaxed mb-4" style="color:#888">¿Puedes proyectar los ingresos del mes siguiente?</p>
-        <div class="w-full rounded-full overflow-hidden" style="background:#111;height:3px">
+        <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#B86800;width:50%"></div>
         </div>
       </article>
@@ -514,7 +511,7 @@
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">📬</div>
         <h3 class="font-title text-base mb-2" style="color:#C8392B">Seguimiento</h3>
         <p class="text-xs leading-relaxed mb-4" style="color:#888">¿Qué pasa con prospectos que no compran de inmediato?</p>
-        <div class="w-full rounded-full overflow-hidden" style="background:#111;height:3px">
+        <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#C8392B;width:20%"></div>
         </div>
       </article>
@@ -523,7 +520,7 @@
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">🤝</div>
         <h3 class="font-title text-base mb-2" style="color:#0057FF">Cierre</h3>
         <p class="text-xs leading-relaxed mb-4" style="color:#888">¿Tienes proceso claro de propuesta, precio y cierre?</p>
-        <div class="w-full rounded-full overflow-hidden" style="background:#111;height:3px">
+        <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#0057FF;width:55%"></div>
         </div>
       </article>
@@ -534,17 +531,17 @@
 <!-- ══════════════════════════════════════════
      URIEL — Experto
 ══════════════════════════════════════════ -->
-<section class="py-24" style="background:rgba(10,10,10,.5);border-top:1px solid #111;border-bottom:1px solid #111">
+<section class="py-24" style="background:rgba(244,245,247,.8);border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
   <div class="container mx-auto px-6">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
 
       <!-- Photo -->
       <div class="relative reveal">
         <div class="absolute inset-0 rounded-full blur-3xl" style="background:rgba(0,87,255,.12)"></div>
-        <div class="relative overflow-hidden shadow-2xl max-w-sm mx-auto" style="border:1px solid #1A1A1A">
+        <div class="relative overflow-hidden shadow-2xl max-w-sm mx-auto" style="border:1px solid #E5E5E5">
           <img src="uriel-vargas.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                alt="Uriel Vargas, VESTRA" class="w-full h-auto">
-          <div class="hidden w-full h-64 items-center justify-center" style="background:#0F0F0F">
+          <div class="hidden w-full h-64 items-center justify-center" style="background:#F8F8F8">
             <span class="font-title grad-text-accent" style="font-size:80px">UV</span>
           </div>
           <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(8,8,8,.8),transparent)"></div>
@@ -619,8 +616,8 @@
             <span class="font-title text-xl" style="color:#C8392B">14/50</span>
           </div>
         </div>
-        <p class="text-sm mb-6 italic leading-relaxed" style="color:#AAAAAA">"Pensé que el problema era conseguir más prospectos. El diagnóstico me mostró que <strong class="text-white">los tenía y los estaba dejando ir</strong>. No hacía seguimiento. Cero. Fue incómodo leerlo pero necesitaba ese jalón de orejas."</p>
-        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #1A1A1A">
+        <p class="text-sm mb-6 italic leading-relaxed" style="color:#AAAAAA">"Pensé que el problema era conseguir más prospectos. El diagnóstico me mostró que <strong class="text-gray-900">los tenía y los estaba dejando ir</strong>. No hacía seguimiento. Cero. Fue incómodo leerlo pero necesitaba ese jalón de orejas."</p>
+        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #E5E5E5">
           <div class="w-10 h-10 flex items-center justify-center font-title text-sm" style="background:linear-gradient(135deg,#0057FF,#003FBF)">SL</div>
           <div>
             <div class="font-semibold text-sm font-title tracking-wide">Sofía L.</div>
@@ -639,8 +636,8 @@
             <span class="font-title text-xl" style="color:#B86800">28/50</span>
           </div>
         </div>
-        <p class="text-sm mb-6 italic leading-relaxed" style="color:#AAAAAA">"El diagnóstico confirmó lo que intuía pero no podía nombrar: <strong class="text-white">mis ventas dependían de mí al 100%</strong>. Si yo paraba, todo paraba. El reporte me dio claridad para saber qué construir primero."</p>
-        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #1A1A1A">
+        <p class="text-sm mb-6 italic leading-relaxed" style="color:#AAAAAA">"El diagnóstico confirmó lo que intuía pero no podía nombrar: <strong class="text-gray-900">mis ventas dependían de mí al 100%</strong>. Si yo paraba, todo paraba. El reporte me dio claridad para saber qué construir primero."</p>
+        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #E5E5E5">
           <div class="w-10 h-10 flex items-center justify-center font-title text-sm" style="background:linear-gradient(135deg,#B86800,#8B4E00)">RM</div>
           <div>
             <div class="font-semibold text-sm font-title tracking-wide">Rodrigo M.</div>
@@ -659,8 +656,8 @@
             <span class="font-title text-xl" style="color:#00875A">39/50</span>
           </div>
         </div>
-        <p class="text-sm mb-6 italic leading-relaxed" style="color:#AAAAAA">"Saqué buen puntaje pero el área de Métricas me dio un jalón. <strong class="text-white">No sabía cuántos prospectos cerraban cada mes.</strong> Ese dato solo ya me ayudó a tomar una decisión de contratación que llevaba meses postergando."</p>
-        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #1A1A1A">
+        <p class="text-sm mb-6 italic leading-relaxed" style="color:#AAAAAA">"Saqué buen puntaje pero el área de Métricas me dio un jalón. <strong class="text-gray-900">No sabía cuántos prospectos cerraban cada mes.</strong> Ese dato solo ya me ayudó a tomar una decisión de contratación que llevaba meses postergando."</p>
+        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #E5E5E5">
           <div class="w-10 h-10 flex items-center justify-center font-title text-sm" style="background:linear-gradient(135deg,#00875A,#005C3D)">CV</div>
           <div>
             <div class="font-semibold text-sm font-title tracking-wide">Carlos V.</div>
@@ -675,7 +672,7 @@
 <!-- ══════════════════════════════════════════
      FAQ
 ══════════════════════════════════════════ -->
-<section id="faq" class="py-24" style="background:rgba(10,10,10,.5);border-top:1px solid #111;border-bottom:1px solid #111">
+<section id="faq" class="py-24" style="background:rgba(244,245,247,.8);border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
   <div class="container mx-auto px-6 max-w-3xl">
     <div class="text-center mb-14 reveal">
       <h2 class="font-title mb-4" style="font-size:clamp(32px,7vw,52px)">Preguntas Frecuentes</h2>
@@ -778,7 +775,7 @@
 <!-- ══════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════ -->
-<footer class="py-10" style="border-top:1px solid #111;background:#050505">
+<footer class="py-10" style="border-top:1px solid #E5E5E5;background:#EEEEEE">
   <div class="container mx-auto px-6">
     <div class="flex flex-col md:flex-row justify-between items-center gap-6">
       <a href="#">
@@ -786,11 +783,11 @@
         <span class="font-title text-lg tracking-widest" style="color:#0057FF;display:none">UV · VESTRA</span>
       </a>
       <div class="flex gap-6 text-xs font-title tracking-widest" style="color:#999">
-        <a href="#areas" class="hover:text-white transition-colors">Áreas</a>
-        <a href="#como-funciona" class="hover:text-white transition-colors">Proceso</a>
-        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
-        <a href="https://wa.me/5215520654337" target="_blank" class="hover:text-white transition-colors">WhatsApp</a>
-        <a href="https://instagram.com/uriel_vestra" target="_blank" class="hover:text-white transition-colors">@uriel_vestra</a>
+        <a href="#areas" class="hover:text-black transition-colors">Áreas</a>
+        <a href="#como-funciona" class="hover:text-black transition-colors">Proceso</a>
+        <a href="#faq" class="hover:text-black transition-colors">FAQ</a>
+        <a href="https://wa.me/5215520654337" target="_blank" class="hover:text-black transition-colors">WhatsApp</a>
+        <a href="https://instagram.com/uriel_vestra" target="_blank" class="hover:text-black transition-colors">@uriel_vestra</a>
       </div>
       <p class="text-xs text-center" style="color:#777">© 2025 VESTRA · Diagnóstico Comercial™ · +52 55 2065 4337</p>
     </div>
@@ -812,11 +809,18 @@ window.addEventListener('scroll', () => {
   document.getElementById('scroll-bar').style.width = pct + '%';
 }, {passive:true});
 
-// Navbar glass
+// Navbar — fondo blanco con sombra al hacer scroll
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('glass', window.scrollY > 60);
-  navbar.classList.toggle('shadow-xl', window.scrollY > 60);
+  if (window.scrollY > 60) {
+    navbar.style.background = '#FFFFFF';
+    navbar.style.boxShadow = '0 1px 20px rgba(0,0,0,.08)';
+    navbar.style.borderBottom = '1px solid #E5E5E5';
+  } else {
+    navbar.style.background = 'transparent';
+    navbar.style.boxShadow = 'none';
+    navbar.style.borderBottom = 'none';
+  }
 }, {passive:true});
 
 // Mobile menu
