@@ -6,9 +6,9 @@
 <title>Diagnóstico Comercial™ | ¿Tienes un sistema de ventas? — VESTRA</title>
 <meta name="description" content="Descubre en 5 minutos si tu negocio tiene fugas en el sistema de ventas. 10 preguntas. Reporte con score personalizado. Gratis.">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Courier Prime', monospace; }
+  body { font-family: 'Inter', sans-serif; font-size:15px; line-height:1.7; }
   .font-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; text-transform: uppercase; }
 
   /* Scroll progress */
@@ -33,16 +33,16 @@
   .reveal { opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease; }
   .reveal.active { opacity:1;transform:none; }
 
-  /* Cards — reemplaza glass */
-  .glass       { background:#FFFFFF;border:1px solid #E5E5E5;box-shadow:0 4px 24px rgba(0,0,0,.07); }
-  .glass-light { background:#FFFFFF;border:1px solid #EEEEEE;box-shadow:0 2px 12px rgba(0,0,0,.05); }
+  /* Cards — dark navy */
+  .glass       { background:#0F1829;border:1px solid #1E2D45;box-shadow:0 4px 24px rgba(0,0,0,.4); }
+  .glass-light { background:#0F1829;border:1px solid #1A2840;box-shadow:0 2px 12px rgba(0,0,0,.3); }
 
-  /* Grid bg sutil sobre blanco */
-  .grid-bg { background-image:linear-gradient(rgba(0,87,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,87,255,.03) 1px,transparent 1px);background-size:64px 64px; }
+  /* Grid bg sutil sobre navy */
+  .grid-bg { background-image:linear-gradient(rgba(0,87,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,87,255,.06) 1px,transparent 1px);background-size:64px 64px; }
 
-  /* Gradient text — sobre blanco usa tonos más oscuros */
-  .grad-text { background:linear-gradient(135deg,#0057FF 0%,#003FBF 55%,#4D88FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-  .grad-text-accent { background:linear-gradient(135deg,#0057FF 0%,#003FBF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  /* Gradient text — sobre oscuro usa azules brillantes + blanco */
+  .grad-text { background:linear-gradient(135deg,#4D88FF 0%,#FFFFFF 55%,#7AAEFF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .grad-text-accent { background:linear-gradient(135deg,#4D88FF 0%,#0057FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
 
   /* Bar */
   .bar-fill { height:8px;border-radius:9999px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1); }
@@ -59,7 +59,7 @@
 
   /* Custom scrollbar */
   ::-webkit-scrollbar { width:4px; }
-  ::-webkit-scrollbar-track { background:#F0F0F0; }
+  ::-webkit-scrollbar-track { background:#080E1A; }
   ::-webkit-scrollbar-thumb { background:#0057FF;border-radius:2px; }
 
   /* Mobile menu */
@@ -71,7 +71,7 @@
 </style>
 </head>
 
-<body class="overflow-x-hidden" style="background:#F4F5F7;color:#0A0A0A;">
+<body class="overflow-x-hidden" style="background:#080E1A;color:#FFFFFF;">
 
 <!-- Fixed blue stripe -->
 <div class="stripe-right"></div>
@@ -90,11 +90,11 @@
     </a>
 
     <!-- Desktop links -->
-    <div class="hidden md:flex items-center space-x-8 text-sm" style="color:#555555">
-      <a href="#areas" class="hover:text-black transition-colors font-title tracking-wider text-xs">Las 6 Áreas</a>
-      <a href="#como-funciona" class="hover:text-black transition-colors font-title tracking-wider text-xs">Cómo Funciona</a>
-      <a href="#testimonios" class="hover:text-black transition-colors font-title tracking-wider text-xs">Resultados</a>
-      <a href="#faq" class="hover:text-black transition-colors font-title tracking-wider text-xs">Preguntas</a>
+    <div class="hidden md:flex items-center space-x-8 text-sm" style="color:#94A3B8">
+      <a href="#areas" class="hover:text-white transition-colors font-title tracking-wider text-xs">Las 6 Áreas</a>
+      <a href="#como-funciona" class="hover:text-white transition-colors font-title tracking-wider text-xs">Cómo Funciona</a>
+      <a href="#testimonios" class="hover:text-white transition-colors font-title tracking-wider text-xs">Resultados</a>
+      <a href="#faq" class="hover:text-white transition-colors font-title tracking-wider text-xs">Preguntas</a>
     </div>
 
     <div class="flex items-center space-x-3">
@@ -103,17 +103,17 @@
          style="box-shadow:0 4px 20px rgba(0,87,255,.25)">
         Iniciar Diagnóstico →
       </a>
-      <button class="md:hidden p-2" id="menu-btn" style="color:#555555">
+      <button class="md:hidden p-2" id="menu-btn" style="color:#94A3B8">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
   </div>
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="glass border-t px-6 py-4 space-y-3 text-sm" style="border-color:#E5E5E5">
-    <a href="#areas" class="block py-1 font-title tracking-wider text-xs" style="color:#555555">Las 6 Áreas</a>
-    <a href="#como-funciona" class="block py-1 font-title tracking-wider text-xs" style="color:#555555">Cómo Funciona</a>
-    <a href="#testimonios" class="block py-1 font-title tracking-wider text-xs" style="color:#555555">Resultados</a>
-    <a href="#faq" class="block py-1 font-title tracking-wider text-xs" style="color:#555555">Preguntas</a>
+  <div id="mobile-menu" class="glass border-t px-6 py-4 space-y-3 text-sm" style="border-color:#1E2D45">
+    <a href="#areas" class="block py-1 font-title tracking-wider text-xs" style="color:#94A3B8">Las 6 Áreas</a>
+    <a href="#como-funciona" class="block py-1 font-title tracking-wider text-xs" style="color:#94A3B8">Cómo Funciona</a>
+    <a href="#testimonios" class="block py-1 font-title tracking-wider text-xs" style="color:#94A3B8">Resultados</a>
+    <a href="#faq" class="block py-1 font-title tracking-wider text-xs" style="color:#94A3B8">Preguntas</a>
     <a href="diagnostico-comercial-vestra.html"
        class="block btn-shimmer text-center py-3 font-title tracking-wider text-white mt-2">
       Iniciar Diagnóstico →
@@ -146,10 +146,10 @@
           tus <span class="grad-text">ventas</span>?
         </h1>
 
-        <p class="text-lg mb-4 leading-relaxed" style="color:#555555">
+        <p class="text-lg mb-4 leading-relaxed" style="color:#94A3B8">
           La mayoría de los negocios generan ventas, pero pocas veces saben exactamente por qué. Sin un sistema, dependes del azar, del boca a boca y de tu energía personal — y eso tiene un costo invisible que se acumula cada mes.
         </p>
-        <p class="text-base mb-10 leading-relaxed" style="color:#555555">
+        <p class="text-base mb-10 leading-relaxed" style="color:#94A3B8">
           El <strong style="color:#0057FF">Diagnóstico Comercial™</strong> es un análisis gratuito de 5 minutos que evalúa las 6 áreas críticas de tu sistema de ventas y te entrega un reporte con tu score personalizado.
         </p>
 
@@ -169,7 +169,7 @@
         </div>
 
         <!-- Trust signals -->
-        <div class="flex flex-wrap gap-6 text-xs" style="color:#555555">
+        <div class="flex flex-wrap gap-6 text-xs" style="color:#94A3B8">
           <span class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style="color:#00875A"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>100% gratuito</span>
           <span class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style="color:#00875A"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Sin registro</span>
           <span class="flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style="color:#00875A"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Reporte inmediato</span>
@@ -185,7 +185,7 @@
           <!-- Header -->
           <div class="flex items-center justify-between mb-6">
             <div>
-              <div class="text-xs mb-1 font-title tracking-widest" style="color:#555555">Tu Score Estimado</div>
+              <div class="text-xs mb-1 font-title tracking-widest" style="color:#94A3B8">Tu Score Estimado</div>
               <div class="font-title grad-text-accent" style="font-size:56px;line-height:1" id="hero-score">0/50</div>
             </div>
             <!-- Pentagon radar -->
@@ -203,8 +203,8 @@
           <div class="space-y-3" id="hero-bars">
             <div data-target="60">
               <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-title tracking-wider" style="color:#555555">Prospección</span>
-                <span class="text-xs bar-pct" style="color:#555555">0%</span>
+                <span class="text-xs font-title tracking-wider" style="color:#94A3B8">Prospección</span>
+                <span class="text-xs bar-pct" style="color:#94A3B8">0%</span>
               </div>
               <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#0057FF,#4D88FF)"></div>
@@ -212,8 +212,8 @@
             </div>
             <div data-target="30">
               <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-title tracking-wider" style="color:#555555">Independencia</span>
-                <span class="text-xs bar-pct" style="color:#555555">0%</span>
+                <span class="text-xs font-title tracking-wider" style="color:#94A3B8">Independencia</span>
+                <span class="text-xs bar-pct" style="color:#94A3B8">0%</span>
               </div>
               <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#C8392B,#FF6B6B)"></div>
@@ -221,8 +221,8 @@
             </div>
             <div data-target="40">
               <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-title tracking-wider" style="color:#555555">Métricas</span>
-                <span class="text-xs bar-pct" style="color:#555555">0%</span>
+                <span class="text-xs font-title tracking-wider" style="color:#94A3B8">Métricas</span>
+                <span class="text-xs bar-pct" style="color:#94A3B8">0%</span>
               </div>
               <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#B86800,#FFB340)"></div>
@@ -230,8 +230,8 @@
             </div>
             <div data-target="55">
               <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-title tracking-wider" style="color:#555555">Predictibilidad</span>
-                <span class="text-xs bar-pct" style="color:#555555">0%</span>
+                <span class="text-xs font-title tracking-wider" style="color:#94A3B8">Predictibilidad</span>
+                <span class="text-xs bar-pct" style="color:#94A3B8">0%</span>
               </div>
               <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#0057FF,#4D88FF)"></div>
@@ -239,8 +239,8 @@
             </div>
             <div data-target="20">
               <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-title tracking-wider" style="color:#555555">Seguimiento</span>
-                <span class="text-xs bar-pct" style="color:#555555">0%</span>
+                <span class="text-xs font-title tracking-wider" style="color:#94A3B8">Seguimiento</span>
+                <span class="text-xs bar-pct" style="color:#94A3B8">0%</span>
               </div>
               <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#C8392B,#FF6B6B)"></div>
@@ -248,8 +248,8 @@
             </div>
             <div data-target="50">
               <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-title tracking-wider" style="color:#555555">Cierre</span>
-                <span class="text-xs bar-pct" style="color:#555555">0%</span>
+                <span class="text-xs font-title tracking-wider" style="color:#94A3B8">Cierre</span>
+                <span class="text-xs bar-pct" style="color:#94A3B8">0%</span>
               </div>
               <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:6px">
                 <div class="bar-fill" style="background:linear-gradient(90deg,#B86800,#FFB340)"></div>
@@ -257,8 +257,8 @@
             </div>
           </div>
 
-          <div class="mt-6 pt-5 flex items-center justify-between" style="border-top:1px solid #E5E5E5">
-            <p class="text-xs" style="color:#555555">Negocios con +40/50 <span style="color:#00875A;font-weight:700">cierran 3× más ventas</span></p>
+          <div class="mt-6 pt-5 flex items-center justify-between" style="border-top:1px solid #1E2D45">
+            <p class="text-xs" style="color:#94A3B8">Negocios con +40/50 <span style="color:#00875A;font-weight:700">cierran 3× más ventas</span></p>
             <span class="text-lg">⚡</span>
           </div>
         </div>
@@ -276,7 +276,7 @@
   </div>
 
   <!-- Scroll hint -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce" style="color:#888;font-size:11px">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce" style="color:#64748B;font-size:11px">
     <span class="font-title tracking-widest">SCROLL</span>
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
   </div>
@@ -285,24 +285,24 @@
 <!-- ══════════════════════════════════════════
      STATS BAR
 ══════════════════════════════════════════ -->
-<section class="py-8 reveal" style="border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5;background:rgba(244,245,247,.8)">
+<section class="py-8 reveal" style="border-top:1px solid #1E2D45;border-bottom:1px solid #1E2D45;background:rgba(244,245,247,.8)">
   <div class="container mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
       <div>
         <div class="font-title grad-text-accent counter" style="font-size:32px" data-target="6">0</div>
-        <div class="text-xs mt-1 font-title tracking-widest" style="color:#555555">Áreas evaluadas</div>
+        <div class="text-xs mt-1 font-title tracking-widest" style="color:#94A3B8">Áreas evaluadas</div>
       </div>
       <div>
-        <div class="font-title text-gray-900 counter" style="font-size:32px" data-target="10">0</div>
-        <div class="text-xs mt-1 font-title tracking-widest" style="color:#555555">Preguntas en total</div>
+        <div class="font-title text-white counter" style="font-size:32px" data-target="10">0</div>
+        <div class="text-xs mt-1 font-title tracking-widest" style="color:#94A3B8">Preguntas en total</div>
       </div>
       <div>
         <div class="font-title" style="font-size:32px;color:#00875A"><span class="counter" data-target="5">0</span> min</div>
-        <div class="text-xs mt-1 font-title tracking-widest" style="color:#555555">Para completarlo</div>
+        <div class="text-xs mt-1 font-title tracking-widest" style="color:#94A3B8">Para completarlo</div>
       </div>
       <div>
         <div class="font-title" style="font-size:32px;color:#0057FF"><span class="counter" data-target="50">0</span> pts</div>
-        <div class="text-xs mt-1 font-title tracking-widest" style="color:#555555">Score máximo posible</div>
+        <div class="text-xs mt-1 font-title tracking-widest" style="color:#94A3B8">Score máximo posible</div>
       </div>
     </div>
   </div>
@@ -328,47 +328,47 @@
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors group" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0" checked>
             <div>
-              <span class="font-semibold text-gray-900 block text-sm">Le mandaste cotización y nunca respondió</span>
-              <span class="text-xs" style="color:#555555">No hiciste seguimiento. Se fue con la competencia.</span>
+              <span class="font-semibold text-white block text-sm">Le mandaste cotización y nunca respondió</span>
+              <span class="text-xs" style="color:#94A3B8">No hiciste seguimiento. Se fue con la competencia.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0" checked>
             <div>
-              <span class="font-semibold text-gray-900 block text-sm">No sabes qué va a entrar el próximo mes</span>
-              <span class="text-xs" style="color:#555555">Las ventas son impredecibles y eso genera estrés financiero constante.</span>
+              <span class="font-semibold text-white block text-sm">No sabes qué va a entrar el próximo mes</span>
+              <span class="text-xs" style="color:#94A3B8">Las ventas son impredecibles y eso genera estrés financiero constante.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0">
             <div>
-              <span class="font-semibold text-gray-900 block text-sm">Si tú paras, las ventas paran</span>
-              <span class="text-xs" style="color:#555555">El negocio está amarrado a tu tiempo. No hay proceso que otro pueda seguir.</span>
+              <span class="font-semibold text-white block text-sm">Si tú paras, las ventas paran</span>
+              <span class="text-xs" style="color:#94A3B8">El negocio está amarrado a tu tiempo. No hay proceso que otro pueda seguir.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0">
             <div>
-              <span class="font-semibold text-gray-900 block text-sm">Los clientes llegan por recomendación o suerte</span>
-              <span class="text-xs" style="color:#555555">No hay sistema activo de prospección. Cuando se seca el boca a boca, se seca todo.</span>
+              <span class="font-semibold text-white block text-sm">Los clientes llegan por recomendación o suerte</span>
+              <span class="text-xs" style="color:#94A3B8">No hay sistema activo de prospección. Cuando se seca el boca a boca, se seca todo.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0">
             <div>
-              <span class="font-semibold text-gray-900 block text-sm">No sabes cuántos prospectos entran cada mes</span>
-              <span class="text-xs" style="color:#555555">Sin datos, tomas decisiones a ciegas y no puedes mejorar lo que no mides.</span>
+              <span class="font-semibold text-white block text-sm">No sabes cuántos prospectos entran cada mes</span>
+              <span class="text-xs" style="color:#94A3B8">Sin datos, tomas decisiones a ciegas y no puedes mejorar lo que no mides.</span>
             </div>
           </label>
           <label class="flex items-start gap-4 p-4 cursor-pointer transition-colors" style="background:rgba(200,57,43,.06);border:1px solid rgba(200,57,43,.18)">
             <input type="checkbox" class="mt-0.5 w-5 h-5 flex-shrink-0">
             <div>
-              <span class="font-semibold text-gray-900 block text-sm">Vendes más pero no ves el dinero</span>
-              <span class="text-xs" style="color:#555555">Sin precio basado en valor y sin métricas, el crecimiento destruye margen.</span>
+              <span class="font-semibold text-white block text-sm">Vendes más pero no ves el dinero</span>
+              <span class="text-xs" style="color:#94A3B8">Sin precio basado en valor y sin métricas, el crecimiento destruye margen.</span>
             </div>
           </label>
         </div>
-        <p class="text-center text-xs mt-4 italic" style="color:#555555">Marca los que aplican → cada palomita es dinero que se está yendo</p>
+        <p class="text-center text-xs mt-4 italic" style="color:#94A3B8">Marca los que aplican → cada palomita es dinero que se está yendo</p>
       </div>
 
       <!-- Solution card -->
@@ -376,31 +376,31 @@
         <div class="p-8 shadow-2xl" style="background:linear-gradient(135deg,rgba(0,87,255,.15),rgba(0,87,255,.05));border:1px solid rgba(0,87,255,.25)">
           <div class="text-4xl mb-4">🎯</div>
           <h3 class="font-title text-2xl mb-3">La buena noticia</h3>
-          <p class="mb-6 leading-relaxed text-sm" style="color:#555555">
-            El problema <strong class="text-gray-900">no es tu producto, ni tu precio, ni el mercado.</strong> Es la falta de un sistema de ventas. Los negocios que más cierran no tienen más talento — tienen mejores procesos.
+          <p class="mb-6 leading-relaxed text-sm" style="color:#94A3B8">
+            El problema <strong class="text-white">no es tu producto, ni tu precio, ni el mercado.</strong> Es la falta de un sistema de ventas. Los negocios que más cierran no tienen más talento — tienen mejores procesos.
           </p>
 
           <div class="p-5 mb-6 space-y-3" style="background:rgba(0,87,255,.08);border:1px solid rgba(0,87,255,.15)">
             <h4 class="font-title text-xs tracking-widest mb-3" style="color:#0057FF">Con el Diagnóstico Comercial™ obtienes:</h4>
             <div class="flex gap-3 items-start text-xs">
               <span class="font-bold text-base flex-shrink-0" style="color:#00875A">✓</span>
-              <span style="color:#555555">Saber exactamente en qué área están tus fugas de ventas</span>
+              <span style="color:#94A3B8">Saber exactamente en qué área están tus fugas de ventas</span>
             </div>
             <div class="flex gap-3 items-start text-xs">
               <span class="font-bold text-base flex-shrink-0" style="color:#00875A">✓</span>
-              <span style="color:#555555">Un score por área con semáforo de color</span>
+              <span style="color:#94A3B8">Un score por área con semáforo de color</span>
             </div>
             <div class="flex gap-3 items-start text-xs">
               <span class="font-bold text-base flex-shrink-0" style="color:#00875A">✓</span>
-              <span style="color:#555555">Tus 3 áreas más débiles con descripción del hallazgo</span>
+              <span style="color:#94A3B8">Tus 3 áreas más débiles con descripción del hallazgo</span>
             </div>
             <div class="flex gap-3 items-start text-xs">
               <span class="font-bold text-base flex-shrink-0" style="color:#00875A">✓</span>
-              <span style="color:#555555">Diagnóstico de 2 líneas personalizado a tu nivel</span>
+              <span style="color:#94A3B8">Diagnóstico de 2 líneas personalizado a tu nivel</span>
             </div>
             <div class="flex gap-3 items-start text-xs">
               <span class="font-bold text-base flex-shrink-0" style="color:#00875A">✓</span>
-              <span style="color:#555555">Acceso directo a Uriel para convertirlo en plan de acción</span>
+              <span style="color:#94A3B8">Acceso directo a Uriel para convertirlo en plan de acción</span>
             </div>
           </div>
 
@@ -420,14 +420,14 @@
 <!-- ══════════════════════════════════════════
      CÓMO FUNCIONA
 ══════════════════════════════════════════ -->
-<section id="como-funciona" class="py-24" style="background:rgba(244,245,247,.8);border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
+<section id="como-funciona" class="py-24" style="background:rgba(15,24,41,.9);border-top:1px solid #1E2D45;border-bottom:1px solid #1E2D45">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16 reveal">
       <div class="inline-block px-3 py-1 mb-4 font-title text-xs tracking-widest" style="background:rgba(0,87,255,.1);border:1px solid rgba(0,87,255,.2);color:#0057FF">
         Proceso simple
       </div>
       <h2 class="font-title mb-4" style="font-size:clamp(32px,7vw,52px)">Tres pasos hacia la claridad</h2>
-      <p class="text-base max-w-2xl mx-auto" style="color:#555555">Diseñado para dueños de negocio ocupados. Sin tecnicismos, sin procesos largos.</p>
+      <p class="text-base max-w-2xl mx-auto" style="color:#94A3B8">Diseñado para dueños de negocio ocupados. Sin tecnicismos, sin procesos largos.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8 relative">
@@ -436,21 +436,21 @@
       <div class="reveal glass-light p-8 text-center group transition-all hover:-translate-y-2" style="border-color:rgba(0,87,255,.1)!important">
         <div class="w-16 h-16 flex items-center justify-center text-2xl font-title text-white mx-auto mb-6 shadow-lg" style="background:linear-gradient(135deg,#0057FF,#003FBF);box-shadow:0 8px 24px rgba(0,87,255,.3)">1</div>
         <h3 class="font-title text-xl mb-3 tracking-wide">Responde 10 preguntas</h3>
-        <p class="text-xs leading-relaxed" style="color:#555555">Directas y sin tecnicismos. Una a la vez. Elige la opción que describe cómo opera tu negocio HOY — no cómo quisieras que operara.</p>
+        <p class="text-xs leading-relaxed" style="color:#94A3B8">Directas y sin tecnicismos. Una a la vez. Elige la opción que describe cómo opera tu negocio HOY — no cómo quisieras que operara.</p>
         <div class="mt-4 text-xs font-title tracking-widest" style="color:#0057FF">⏱ 5 minutos</div>
       </div>
 
       <div class="reveal glass-light p-8 text-center group transition-all hover:-translate-y-2" style="animation-delay:.15s">
         <div class="w-16 h-16 flex items-center justify-center text-2xl font-title text-white mx-auto mb-6 shadow-lg" style="background:linear-gradient(135deg,#0057FF,#00875A);box-shadow:0 8px 24px rgba(0,87,255,.3)">2</div>
         <h3 class="font-title text-xl mb-3 tracking-wide">Recibe tu Score</h3>
-        <p class="text-xs leading-relaxed" style="color:#555555">Obtienes tu puntuación sobre 50 y un semáforo por cada una de las 6 áreas: Prospección, Independencia, Métricas, Predictibilidad, Seguimiento y Cierre.</p>
+        <p class="text-xs leading-relaxed" style="color:#94A3B8">Obtienes tu puntuación sobre 50 y un semáforo por cada una de las 6 áreas: Prospección, Independencia, Métricas, Predictibilidad, Seguimiento y Cierre.</p>
         <div class="mt-4 text-xs font-title tracking-widest" style="color:#00875A">📊 Resultado inmediato</div>
       </div>
 
       <div class="reveal glass-light p-8 text-center group transition-all hover:-translate-y-2" style="animation-delay:.3s">
         <div class="w-16 h-16 flex items-center justify-center text-2xl font-title text-white mx-auto mb-6 shadow-lg" style="background:linear-gradient(135deg,#0057FF,#B86800);box-shadow:0 8px 24px rgba(0,87,255,.3)">3</div>
         <h3 class="font-title text-xl mb-3 tracking-wide">Actúa con claridad</h3>
-        <p class="text-xs leading-relaxed" style="color:#555555">El reporte identifica tus 3 áreas más débiles y el diagnóstico de tu nivel. Puedes quedarte con eso o hablar con Uriel para convertirlo en un plan concreto.</p>
+        <p class="text-xs leading-relaxed" style="color:#94A3B8">El reporte identifica tus 3 áreas más débiles y el diagnóstico de tu nivel. Puedes quedarte con eso o hablar con Uriel para convertirlo en un plan concreto.</p>
         <div class="mt-4 text-xs font-title tracking-widest" style="color:#B86800">🎯 Personalizado</div>
       </div>
     </div>
@@ -467,14 +467,14 @@
         Framework VESTRA
       </div>
       <h2 class="font-title mb-4" style="font-size:clamp(32px,7vw,52px)">Las 6 Áreas del Sistema Comercial</h2>
-      <p class="text-base max-w-2xl mx-auto" style="color:#555555">Cada área con su semáforo. Sabrás exactamente qué está fallando y dónde está el dinero que se te va.</p>
+      <p class="text-base max-w-2xl mx-auto" style="color:#94A3B8">Cada área con su semáforo. Sabrás exactamente qué está fallando y dónde está el dinero que se te va.</p>
     </div>
 
     <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
       <article class="glass-light p-6 hover:-translate-y-3 transition-all cursor-default group reveal" style="animation-delay:0s">
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">🔍</div>
         <h3 class="font-title text-base mb-2" style="color:#0057FF">Prospección</h3>
-        <p class="text-xs leading-relaxed mb-4" style="color:#555555">Flujo constante de prospectos. ¿De dónde vienen y cómo llegan?</p>
+        <p class="text-xs leading-relaxed mb-4" style="color:#94A3B8">Flujo constante de prospectos. ¿De dónde vienen y cómo llegan?</p>
         <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#0057FF;width:60%"></div>
         </div>
@@ -483,7 +483,7 @@
       <article class="glass-light p-6 hover:-translate-y-3 transition-all cursor-default group reveal" style="animation-delay:.08s">
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">⚙️</div>
         <h3 class="font-title text-base mb-2" style="color:#4D88FF">Independencia</h3>
-        <p class="text-xs leading-relaxed mb-4" style="color:#555555">¿Puede alguien más ejecutar el proceso de ventas sin ti?</p>
+        <p class="text-xs leading-relaxed mb-4" style="color:#94A3B8">¿Puede alguien más ejecutar el proceso de ventas sin ti?</p>
         <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#4D88FF;width:30%"></div>
         </div>
@@ -492,7 +492,7 @@
       <article class="glass-light p-6 hover:-translate-y-3 transition-all cursor-default group reveal" style="animation-delay:.16s">
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">📊</div>
         <h3 class="font-title text-base mb-2" style="color:#00875A">Métricas</h3>
-        <p class="text-xs leading-relaxed mb-4" style="color:#555555">¿Conoces tu tasa de conversión y cuántos prospectos entran?</p>
+        <p class="text-xs leading-relaxed mb-4" style="color:#94A3B8">¿Conoces tu tasa de conversión y cuántos prospectos entran?</p>
         <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#00875A;width:40%"></div>
         </div>
@@ -501,7 +501,7 @@
       <article class="glass-light p-6 hover:-translate-y-3 transition-all cursor-default group reveal" style="animation-delay:.24s">
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">📅</div>
         <h3 class="font-title text-base mb-2" style="color:#B86800">Predictibilidad</h3>
-        <p class="text-xs leading-relaxed mb-4" style="color:#555555">¿Puedes proyectar los ingresos del mes siguiente?</p>
+        <p class="text-xs leading-relaxed mb-4" style="color:#94A3B8">¿Puedes proyectar los ingresos del mes siguiente?</p>
         <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#B86800;width:50%"></div>
         </div>
@@ -510,7 +510,7 @@
       <article class="glass-light p-6 hover:-translate-y-3 transition-all cursor-default group reveal" style="animation-delay:.32s">
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">📬</div>
         <h3 class="font-title text-base mb-2" style="color:#C8392B">Seguimiento</h3>
-        <p class="text-xs leading-relaxed mb-4" style="color:#555555">¿Qué pasa con prospectos que no compran de inmediato?</p>
+        <p class="text-xs leading-relaxed mb-4" style="color:#94A3B8">¿Qué pasa con prospectos que no compran de inmediato?</p>
         <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#C8392B;width:20%"></div>
         </div>
@@ -519,7 +519,7 @@
       <article class="glass-light p-6 hover:-translate-y-3 transition-all cursor-default group reveal" style="animation-delay:.4s">
         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">🤝</div>
         <h3 class="font-title text-base mb-2" style="color:#0057FF">Cierre</h3>
-        <p class="text-xs leading-relaxed mb-4" style="color:#555555">¿Tienes proceso claro de propuesta, precio y cierre?</p>
+        <p class="text-xs leading-relaxed mb-4" style="color:#94A3B8">¿Tienes proceso claro de propuesta, precio y cierre?</p>
         <div class="w-full rounded-full overflow-hidden" style="background:#FFFFFF;height:3px">
           <div style="height:3px;background:#0057FF;width:55%"></div>
         </div>
@@ -531,14 +531,14 @@
 <!-- ══════════════════════════════════════════
      URIEL — Experto
 ══════════════════════════════════════════ -->
-<section class="py-24" style="background:rgba(244,245,247,.8);border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
+<section class="py-24" style="background:rgba(15,24,41,.9);border-top:1px solid #1E2D45;border-bottom:1px solid #1E2D45">
   <div class="container mx-auto px-6">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
 
       <!-- Photo -->
       <div class="relative reveal">
         <div class="absolute inset-0 rounded-full blur-3xl" style="background:rgba(0,87,255,.12)"></div>
-        <div class="relative overflow-hidden shadow-2xl max-w-sm mx-auto" style="border:1px solid #E5E5E5">
+        <div class="relative overflow-hidden shadow-2xl max-w-sm mx-auto" style="border:1px solid #1E2D45">
           <img src="uriel-vargas.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                alt="Uriel Vargas, VESTRA" class="w-full h-auto">
           <div class="hidden w-full h-64 items-center justify-center" style="background:#F8F8F8">
@@ -562,7 +562,7 @@
         <h2 class="font-title mb-2" style="font-size:clamp(32px,7vw,52px)">Uriel Vargas Ch.</h2>
         <p class="font-title text-lg mb-6 tracking-wide" style="color:#0057FF">Fundador · VESTRA</p>
 
-        <div class="space-y-4 text-sm leading-relaxed mb-8" style="color:#555555">
+        <div class="space-y-4 text-sm leading-relaxed mb-8" style="color:#94A3B8">
           <p>He trabajado con negocios de servicios, consultoras y agencias en México. El patrón que se repite siempre es el mismo: el problema no es falta de talento ni de mercado — es la falta de un sistema de ventas que funcione sin depender del dueño.</p>
           <p>El <strong style="color:#0057FF">Diagnóstico Comercial™</strong> nació de esa observación: necesitaba una forma rápida y objetiva de identificar en dónde exactamente se pierde el dinero. Hoy es el punto de partida de todo proyecto con VESTRA.</p>
         </div>
@@ -570,21 +570,21 @@
         <div class="grid grid-cols-3 gap-4 mb-8">
           <div class="glass-light p-4 text-center">
             <div class="font-title grad-text-accent" style="font-size:22px">6</div>
-            <div class="text-xs mt-1 font-title tracking-widest" style="color:#555555">Áreas analizadas</div>
+            <div class="text-xs mt-1 font-title tracking-widest" style="color:#94A3B8">Áreas analizadas</div>
           </div>
           <div class="glass-light p-4 text-center">
             <div class="font-title" style="font-size:22px;color:#00875A">5 min</div>
-            <div class="text-xs mt-1 font-title tracking-widest" style="color:#555555">Diagnóstico</div>
+            <div class="text-xs mt-1 font-title tracking-widest" style="color:#94A3B8">Diagnóstico</div>
           </div>
           <div class="glass-light p-4 text-center">
             <div class="font-title" style="font-size:22px;color:#0057FF">100%</div>
-            <div class="text-xs mt-1 font-title tracking-widest" style="color:#555555">Gratuito</div>
+            <div class="text-xs mt-1 font-title tracking-widest" style="color:#94A3B8">Gratuito</div>
           </div>
         </div>
 
-        <blockquote class="pl-5 italic text-sm leading-relaxed" style="border-left:3px solid #0057FF;color:#888">
+        <blockquote class="pl-5 italic text-sm leading-relaxed" style="border-left:3px solid #0057FF;color:#64748B">
           "No puedes arreglar lo que no puedes ver. El primer paso para mejorar tus ventas es saber exactamente en dónde estás perdiendo dinero hoy."
-          <footer class="mt-2 text-xs not-italic" style="color:#555555">— Uriel Vargas Ch.</footer>
+          <footer class="mt-2 text-xs not-italic" style="color:#94A3B8">— Uriel Vargas Ch.</footer>
         </blockquote>
       </div>
 
@@ -602,7 +602,7 @@
         Casos reales
       </div>
       <h2 class="font-title mb-4" style="font-size:clamp(32px,7vw,52px)">Lo que descubrieron cuando se midieron</h2>
-      <p class="text-base" style="color:#555555">Resultados de quienes hicieron el Diagnóstico Comercial™.</p>
+      <p class="text-base" style="color:#94A3B8">Resultados de quienes hicieron el Diagnóstico Comercial™.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
@@ -612,16 +612,16 @@
             <span class="text-sm" style="color:#B86800">★★★★★</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-xs font-title tracking-widest" style="color:#555555">Score</span>
+            <span class="text-xs font-title tracking-widest" style="color:#94A3B8">Score</span>
             <span class="font-title text-xl" style="color:#C8392B">14/50</span>
           </div>
         </div>
-        <p class="text-sm mb-6 italic leading-relaxed" style="color:#555555">"Pensé que el problema era conseguir más prospectos. El diagnóstico me mostró que <strong class="text-gray-900">los tenía y los estaba dejando ir</strong>. No hacía seguimiento. Cero. Fue incómodo leerlo pero necesitaba ese jalón de orejas."</p>
-        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #E5E5E5">
+        <p class="text-sm mb-6 italic leading-relaxed" style="color:#94A3B8">"Pensé que el problema era conseguir más prospectos. El diagnóstico me mostró que <strong class="text-white">los tenía y los estaba dejando ir</strong>. No hacía seguimiento. Cero. Fue incómodo leerlo pero necesitaba ese jalón de orejas."</p>
+        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #1E2D45">
           <div class="w-10 h-10 flex items-center justify-center font-title text-sm" style="background:linear-gradient(135deg,#0057FF,#003FBF)">SL</div>
           <div>
             <div class="font-semibold text-sm font-title tracking-wide">Sofía L.</div>
-            <div class="text-xs" style="color:#555555">Consultora independiente · CDMX</div>
+            <div class="text-xs" style="color:#94A3B8">Consultora independiente · CDMX</div>
           </div>
         </div>
       </article>
@@ -632,16 +632,16 @@
             <span class="text-sm" style="color:#B86800">★★★★★</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-xs font-title tracking-widest" style="color:#555555">Score</span>
+            <span class="text-xs font-title tracking-widest" style="color:#94A3B8">Score</span>
             <span class="font-title text-xl" style="color:#B86800">28/50</span>
           </div>
         </div>
-        <p class="text-sm mb-6 italic leading-relaxed" style="color:#555555">"El diagnóstico confirmó lo que intuía pero no podía nombrar: <strong class="text-gray-900">mis ventas dependían de mí al 100%</strong>. Si yo paraba, todo paraba. El reporte me dio claridad para saber qué construir primero."</p>
-        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #E5E5E5">
+        <p class="text-sm mb-6 italic leading-relaxed" style="color:#94A3B8">"El diagnóstico confirmó lo que intuía pero no podía nombrar: <strong class="text-white">mis ventas dependían de mí al 100%</strong>. Si yo paraba, todo paraba. El reporte me dio claridad para saber qué construir primero."</p>
+        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #1E2D45">
           <div class="w-10 h-10 flex items-center justify-center font-title text-sm" style="background:linear-gradient(135deg,#B86800,#8B4E00)">RM</div>
           <div>
             <div class="font-semibold text-sm font-title tracking-wide">Rodrigo M.</div>
-            <div class="text-xs" style="color:#555555">Agencia digital · Monterrey</div>
+            <div class="text-xs" style="color:#94A3B8">Agencia digital · Monterrey</div>
           </div>
         </div>
       </article>
@@ -652,16 +652,16 @@
             <span class="text-sm" style="color:#B86800">★★★★★</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-xs font-title tracking-widest" style="color:#555555">Score</span>
+            <span class="text-xs font-title tracking-widest" style="color:#94A3B8">Score</span>
             <span class="font-title text-xl" style="color:#00875A">39/50</span>
           </div>
         </div>
-        <p class="text-sm mb-6 italic leading-relaxed" style="color:#555555">"Saqué buen puntaje pero el área de Métricas me dio un jalón. <strong class="text-gray-900">No sabía cuántos prospectos cerraban cada mes.</strong> Ese dato solo ya me ayudó a tomar una decisión de contratación que llevaba meses postergando."</p>
-        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #E5E5E5">
+        <p class="text-sm mb-6 italic leading-relaxed" style="color:#94A3B8">"Saqué buen puntaje pero el área de Métricas me dio un jalón. <strong class="text-white">No sabía cuántos prospectos cerraban cada mes.</strong> Ese dato solo ya me ayudó a tomar una decisión de contratación que llevaba meses postergando."</p>
+        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid #1E2D45">
           <div class="w-10 h-10 flex items-center justify-center font-title text-sm" style="background:linear-gradient(135deg,#00875A,#005C3D)">CV</div>
           <div>
             <div class="font-semibold text-sm font-title tracking-wide">Carlos V.</div>
-            <div class="text-xs" style="color:#555555">Empresa B2B · Guadalajara</div>
+            <div class="text-xs" style="color:#94A3B8">Empresa B2B · Guadalajara</div>
           </div>
         </div>
       </article>
@@ -672,20 +672,20 @@
 <!-- ══════════════════════════════════════════
      FAQ
 ══════════════════════════════════════════ -->
-<section id="faq" class="py-24" style="background:rgba(244,245,247,.8);border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
+<section id="faq" class="py-24" style="background:rgba(15,24,41,.9);border-top:1px solid #1E2D45;border-bottom:1px solid #1E2D45">
   <div class="container mx-auto px-6 max-w-3xl">
     <div class="text-center mb-14 reveal">
       <h2 class="font-title mb-4" style="font-size:clamp(32px,7vw,52px)">Preguntas Frecuentes</h2>
-      <p style="color:#555555">Todo lo que necesitas saber antes de comenzar.</p>
+      <p style="color:#94A3B8">Todo lo que necesitas saber antes de comenzar.</p>
     </div>
 
     <div class="space-y-3 reveal">
       <div class="glass-light overflow-hidden faq-item">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left transition-colors faq-btn" style="hover:background:rgba(0,87,255,.05)" aria-expanded="false">
           <span class="font-semibold text-sm">¿El diagnóstico es realmente gratuito?</span>
-          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#555555"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#94A3B8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
-        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#555555">
+        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#94A3B8">
           Sí, 100% gratuito. No hay tarjeta de crédito, correo requerido, ni letra pequeña. El Diagnóstico Comercial™ corre completamente en tu dispositivo y el reporte es inmediato. Si después quieres hablar con Uriel, es tu decisión — sin presión.
         </div>
       </div>
@@ -693,9 +693,9 @@
       <div class="glass-light overflow-hidden faq-item">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left transition-colors faq-btn" aria-expanded="false">
           <span class="font-semibold text-sm">¿Cuánto tiempo toma completarlo?</span>
-          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#555555"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#94A3B8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
-        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#555555">
+        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#94A3B8">
           Entre 4 y 6 minutos. Son 10 preguntas directas, una a la vez. No necesitas preparar nada ni buscar datos — responde desde lo que vives en tu negocio hoy.
         </div>
       </div>
@@ -703,9 +703,9 @@
       <div class="glass-light overflow-hidden faq-item">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left transition-colors faq-btn" aria-expanded="false">
           <span class="font-semibold text-sm">¿Para qué tipo de negocio funciona?</span>
-          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#555555"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#94A3B8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
-        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#555555">
+        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#94A3B8">
           Para negocios de servicios, consultoras, agencias y PyMEs B2B. Es especialmente útil para dueños que sienten que las ventas no son predecibles o que dependen demasiado de ellos mismos para cerrar.
         </div>
       </div>
@@ -713,9 +713,9 @@
       <div class="glass-light overflow-hidden faq-item">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left transition-colors faq-btn" aria-expanded="false">
           <span class="font-semibold text-sm">¿Qué pasa después del diagnóstico?</span>
-          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#555555"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#94A3B8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
-        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#555555">
+        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#94A3B8">
           Recibes el reporte completo de inmediato. Si quieres ir más lejos, hay un botón para escribirle directamente a Uriel por WhatsApp. La conversación parte de tu puntuación — no de cero. Sin compromiso de compra.
         </div>
       </div>
@@ -723,9 +723,9 @@
       <div class="glass-light overflow-hidden faq-item">
         <button class="w-full flex items-center justify-between px-6 py-5 text-left transition-colors faq-btn" aria-expanded="false">
           <span class="font-semibold text-sm">¿Son confidenciales mis respuestas?</span>
-          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#555555"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          <svg class="w-5 h-5 flex-shrink-0 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#94A3B8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
-        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#555555">
+        <div class="faq-answer px-6 pb-5 text-sm leading-relaxed" style="color:#94A3B8">
           Sí. El diagnóstico corre completamente en tu dispositivo. Ninguna respuesta se guarda en servidores. Uriel solo ve tu puntuación si tú decides compartirla al contactarlo.
         </div>
       </div>
@@ -751,7 +751,7 @@
         Tu negocio merece<br>un <span class="grad-text">diagnóstico real</span>
       </h2>
 
-      <p class="text-xl mb-10 max-w-2xl mx-auto leading-relaxed" style="color:#555555">
+      <p class="text-xl mb-10 max-w-2xl mx-auto leading-relaxed" style="color:#94A3B8">
         Deja de adivinar dónde se van tus ventas. En 5 minutos tendrás el mapa de tus fugas y claridad para saber qué arreglar primero.
       </p>
 
@@ -762,7 +762,7 @@
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
       </a>
 
-      <div class="flex flex-wrap justify-center gap-6 text-xs font-title tracking-widest" style="color:#555555">
+      <div class="flex flex-wrap justify-center gap-6 text-xs font-title tracking-widest" style="color:#94A3B8">
         <span>⚡ 5 minutos</span>
         <span>🔒 Sin registro</span>
         <span>🎯 Reporte personalizado</span>
@@ -775,19 +775,19 @@
 <!-- ══════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════ -->
-<footer class="py-10" style="border-top:1px solid #E5E5E5;background:#EEEEEE">
+<footer class="py-10" style="border-top:1px solid #1E2D45;background:#060C16">
   <div class="container mx-auto px-6">
     <div class="flex flex-col md:flex-row justify-between items-center gap-6">
       <a href="#">
         <img src="logo-vestra.jpg" alt="VESTRA" class="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span class="font-title text-lg tracking-widest" style="color:#0057FF;display:none">UV · VESTRA</span>
       </a>
-      <div class="flex gap-6 text-xs font-title tracking-widest" style="color:#555555">
-        <a href="#areas" class="hover:text-black transition-colors">Áreas</a>
-        <a href="#como-funciona" class="hover:text-black transition-colors">Proceso</a>
-        <a href="#faq" class="hover:text-black transition-colors">FAQ</a>
-        <a href="https://wa.me/5215520654337" target="_blank" class="hover:text-black transition-colors">WhatsApp</a>
-        <a href="https://instagram.com/uriel_vestra" target="_blank" class="hover:text-black transition-colors">@uriel_vestra</a>
+      <div class="flex gap-6 text-xs font-title tracking-widest" style="color:#94A3B8">
+        <a href="#areas" class="hover:text-white transition-colors">Áreas</a>
+        <a href="#como-funciona" class="hover:text-white transition-colors">Proceso</a>
+        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+        <a href="https://wa.me/5215520654337" target="_blank" class="hover:text-white transition-colors">WhatsApp</a>
+        <a href="https://instagram.com/uriel_vestra" target="_blank" class="hover:text-white transition-colors">@uriel_vestra</a>
       </div>
       <p class="text-xs text-center" style="color:#444444">© 2025 VESTRA · Diagnóstico Comercial™ · +52 55 2065 4337</p>
     </div>
@@ -813,9 +813,9 @@ window.addEventListener('scroll', () => {
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 60) {
-    navbar.style.background = '#FFFFFF';
-    navbar.style.boxShadow = '0 1px 20px rgba(0,0,0,.08)';
-    navbar.style.borderBottom = '1px solid #E5E5E5';
+    navbar.style.background = 'rgba(8,14,26,.95)';
+    navbar.style.boxShadow = '0 1px 20px rgba(0,0,0,.4)';
+    navbar.style.borderBottom = '1px solid #1E2D45';navbar.style.background='rgba(8,14,26,.95)';
   } else {
     navbar.style.background = 'transparent';
     navbar.style.boxShadow = 'none';
